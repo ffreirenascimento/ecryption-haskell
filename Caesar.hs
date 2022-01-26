@@ -1,10 +1,10 @@
 module Caesar (caesar) where
 
-import Data.Char (chr, ord)
+import Data.Char (chr, ord, isUpper)
 
 caesar :: String -> Int-> String -> String
 caesar _ _ [] = []
-caesar direction key content = map (caesarAux direction key) content
+caesar direction key content = map (caesarAux direction (key `mod` 25)) content
                               
 -- According to the direction and key, this method will
 -- encrypt or solve with the given content using the 
@@ -19,19 +19,13 @@ eligible :: Char -> Bool
 eligible d = ((ord d) >= 65 && (ord d) <= 90) || ((ord d) >= 97 && (ord d) <= 122) 
 
 decode :: Int -> Char -> Char
-decode 0 c = c
-decode key c = if res >= 97 
-                then chr res
-                else decode (97 `mod` key) (chr 122)
-                where res = ord c - key
+decode key c
+    | isUpper c = if res < 65 then chr (90 - (65 `mod` res)) else chr res
+    | otherwise = if res < 97 then chr (122 - (97 `mod` res)) else chr res
+    where res = ord c - key
 
 encode :: Int -> Char -> Char
-encode 0 c = c
-encode key c = if res >= 97 && res <= 122 
-                then chr res
-                else encode (res `mod` 122) (chr 97)
-                where res = key + ord c
-
-  
-
-
+encode key c
+    | isUpper c = if res > 90 then chr (65 + (res `mod` 90)) else chr res
+    | otherwise = if res > 122 then chr (97 + (res `mod` 122)) else chr res
+    where res = key + ord c
