@@ -1,6 +1,7 @@
 module Main where
 import System.Environment
-
+import Caesar
+import Vigenere
 
 main = do
     -- Obtain and validate arguments
