@@ -13,4 +13,4 @@ caesarAux :: String -> Int -> Char -> Char
 caesarAux direction key c
     | direction == "enc" = if eligible c then encode key c else c
     | direction == "dec" = if eligible c then decode key c else c
-    | otherwise = error "invalid input"
+    | otherwise = error "invalid direction"
