@@ -14,14 +14,14 @@ module Crypto (eligible, encode, decode) where
 
     decode :: Int -> Char -> Char
     decode key c
-        | isUpper c = if res < 65 then chr (90 - (65 `mod` res)) else chr res
-        | otherwise = if res < 97 then chr (122 - (97 `mod` res)) else chr res
+        | isUpper c = if res < 65 then chr (91 - (65 `mod` res)) else chr res
+        | otherwise = if res < 97 then chr (123 - (97 `mod` res)) else chr res
         where res = ord c - key
 
     encode :: Int -> Char -> Char
     encode key c
-        | isUpper c = if res > 90 then chr (65 + (res `mod` 90)) else chr res
-        | otherwise = if res > 122 then chr (97 + (res `mod` 122)) else chr res
+        | isUpper c = if res > 90 then chr (64 + (res `mod` 90)) else chr res
+        | otherwise = if res > 122 then chr (96 + (res `mod` 122)) else chr res
         where res = key + ord c
     
 
