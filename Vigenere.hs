@@ -7,9 +7,6 @@ module Vigenere (vigenere) where
     vigenere direction key content = vigenereAux direction cycledKey content
         where cycledKey = take (length (filter eligible content)) -- length of the content containing only eligible characters
                             $ cycle $ adaptKey key
-
-    cycledKey key content = take (length (filter eligible content)) -- length of the content containing only eligible characters
-                            $ cycle $ adaptKey key
     
     -- Recursively applies encode or decode functions to the given content
     -- until content equals an empty list 
