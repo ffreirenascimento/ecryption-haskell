@@ -2,6 +2,7 @@ module Main where
 import System.Environment
 import Caesar
 import Vigenere
+import Substitution
 
 main = do
     -- Obtain and validate arguments
