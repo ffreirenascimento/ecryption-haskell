@@ -16,7 +16,7 @@ module Substitution (substitution) where
                             else c)  
         where adaptedKey = adaptKey key direction
     
-    substitutionAux :: Map.Map Char Char -> Char -> Char
+    substitutionAux :: KeyValue -> Char -> Char
     substitutionAux values c = getValue $ Map.lookup (toUpper c) values
                              where  getValue Nothing = ' '
                                     getValue (Just d) = if isUpper c then d else toLower d 
