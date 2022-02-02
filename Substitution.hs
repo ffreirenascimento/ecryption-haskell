@@ -1,7 +1,7 @@
 module Substitution (substitution) where
     
     import Crypto (eligible)
-    import Data.Char (toUpper, isAlpha)
+    import Data.Char (toUpper, isAlpha, isUpper, toLower)
     import Data.List (nub)
     import qualified Data.Map as Map
     
@@ -17,9 +17,9 @@ module Substitution (substitution) where
         where adaptedKey = adaptKey key direction
     
     substitutionAux :: Map.Map Char Char -> Char -> Char
-    substitutionAux values c = getValue $ Map.lookup c values
+    substitutionAux values c = getValue $ Map.lookup (toUpper c) values
                              where  getValue Nothing = ' '
-                                    getValue (Just c) = c
+                                    getValue (Just d) = if isUpper c then d else toLower d 
 
     -- Adapts key so it has unique elements and is concatenated with 
     -- the letters of the alphabet that are not contained in the key
