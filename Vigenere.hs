@@ -7,11 +7,13 @@ module Vigenere (vigenere) where
     vigenere direction key content = vigenereAux direction cycledKey content
         where cycledKey = take (length (filter eligible content)) -- length of the content containing only eligible characters
                             $ cycle $ adaptKey key
-    
+
+
     -- Recursively applies encode or decode functions to the given content
     -- until content equals an empty list 
     vigenereAux :: String -> [Int] -> String -> String
     vigenereAux _ _ [] = []
+    vigenereAux _ [] cs = cs 
     vigenereAux direction key@(k:ks) (c:cs) 
         | direction == "enc" = if eligible c then encode k c : vigenereAux direction ks cs
                                 else c : vigenereAux direction key cs
@@ -25,6 +27,3 @@ module Vigenere (vigenere) where
     adaptKey :: String -> [Int]
     adaptKey key = map (abs. (65 -) . ord .toUpper) $ 
         filter eligible key 
-
-
-
