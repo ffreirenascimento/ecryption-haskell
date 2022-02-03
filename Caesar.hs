@@ -4,7 +4,7 @@ import Crypto
 
 caesar :: String -> Int-> String -> String
 caesar _ _ [] = []
-caesar direction key content = map (caesarAux direction (key `mod` 25)) content
+caesar direction key content = map (caesarAux direction (key `mod` 26)) content
                               
 -- According to the direction and key, this method will
 -- encrypt or solve with the given content using the 
