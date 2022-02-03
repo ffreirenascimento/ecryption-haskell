@@ -29,3 +29,10 @@ key = any alpha string
 
 Limitations:
 *Only cipher characters in the alphabet, special characters and numbers are not considered 
+
+
+Tests:
+*Run all tests: ./Main -t
+*Run specific test: quickCheck <PropertyName>
+
+
