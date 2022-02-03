@@ -7,10 +7,10 @@ import Control.Monad (unless, when)
 
 main = do
     -- Obtain and validate arguments
-    args@(method:direction:_) <- getArgs
+    args <- getArgs
     -- arguments should be in the form:
     -- method direction key
-    if method `notElem` ["caesar","vigenere","substitution"]
+    if head args `notElem` ["caesar","vigenere","substitution"]
         then 
             putStrLn $ "Invalid method" ++ "\n" ++
                        "Please use one of the following:" ++ "\n" ++
@@ -18,7 +18,7 @@ main = do
                        " > vigenere" ++ "\n" ++
                        " > substitution"
         else
-            if direction `notElem` ["enc","dec"]
+            if args!!1 `notElem` ["enc","dec"]
                 then 
                     putStrLn $ "Invalid direction of encryption" ++ "\n" ++
                                "Please use one of the following:" ++ "\n" ++
