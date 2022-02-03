@@ -25,5 +25,6 @@ module Vigenere (vigenere) where
     -- to the positions of the character in the alphabet.
     -- Non-alphabetic characters will be ignored
     adaptKey :: String -> [Int]
+    adaptKey "" = [0]
     adaptKey key = map (abs. (65 -) . ord .toUpper) $ 
         filter eligible key 
